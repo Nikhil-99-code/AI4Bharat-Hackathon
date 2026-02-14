@@ -1,10 +1,16 @@
-# Design Document: Agri-Nexus Multimodal AI Platform
+# Design Document: Agri-Nexus Multimodal AI Operating System
 
 ## Overview
 
-Agri-Nexus is designed as a serverless, event-driven multimodal AI platform built on AWS services. The system follows a microservices architecture with clear separation of concerns, enabling independent scaling and maintenance of different capabilities. The platform leverages AWS Bedrock for AI processing, DynamoDB for data persistence, and AWS communication services for farmer interactions.
+Agri-Nexus is a Multimodal AI Operating System that functions as an intelligent "nervous system" for Farmer Producer Organizations (FPOs). Built on a serverless, event-driven architecture using AWS services, the system addresses three critical failures in rural agricultural ecosystems:
 
-The design prioritizes resilience, multilingual support, and offline capability to serve farmers in rural areas with intermittent connectivity. All components are designed to handle the unique challenges of agricultural workflows, including seasonal patterns, regional variations, and the need for real-time decision support.
+1. **The Literacy & Visual Gap**: Solved through computer vision-enabled crop diagnosis using Amazon Bedrock with Claude 3.5 Sonnet
+2. **Information Latency**: Solved through proactive "Set and Forget" SMS price alerts that push critical market intelligence
+3. **Broken Feedback Loops**: Solved through real-time voice-based grievance systems that give FPOs visibility into farmer needs
+
+The system delivers true multimodality - it can "See" (diagnose crops via computer vision), "Speak" (provide vernacular advisory), and "Alert" (push critical intelligence via SMS). The architecture follows serverless patterns with AWS Lambda, EventBridge, and DynamoDB, enabling automatic scaling, fault isolation, and 99.9% uptime for critical services.
+
+The design prioritizes resilience, multilingual support, and offline capability to serve farmers in rural areas with intermittent connectivity. All components leverage Amazon Bedrock with Claude 3.5 Sonnet for unified multimodal AI processing, ensuring consistent intelligence across vision, voice, and text modalities.
 
 ## Architecture
 
