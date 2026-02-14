@@ -8,13 +8,13 @@ Agri-Nexus is a Multimodal AI Operating System that serves as an intelligent "ne
 2. **Information Latency**: Farmers miss critical market price peaks due to delayed information access, forcing distressed sales to middlemen
 3. **Broken Feedback Loops**: FPOs lack real-time visibility into farmer needs, crop health patterns, and operational issues
 
-Built on a serverless, event-driven architecture using Amazon Bedrock with Claude 3.5 Sonnet for multimodal AI capabilities, Agri-Nexus delivers true multimodality - it can "See" (diagnose crops via computer vision), "Speak" (provide vernacular advisory), and "Alert" (push critical intelligence via SMS). The system is designed for high availability in low-connectivity environments, functioning as a complete agricultural operating system rather than a simple chatbot.
+Built on a serverless, event-driven architecture using Amazon Bedrock with Claude 4.5 Sonnet for multimodal AI capabilities, Agri-Nexus delivers true multimodality - it can "See" (diagnose crops via computer vision), "Speak" (provide vernacular advisory), and "Alert" (push critical intelligence via SMS). The system is designed for high availability in low-connectivity environments, functioning as a complete agricultural operating system rather than a simple chatbot.
 
 ## Glossary
 
 - **Agri_Nexus**: Multimodal AI Operating System serving as the intelligent nervous system for FPOs
 - **FPO**: Farmer Producer Organization - collective farming entities
-- **Dr_Crop**: Computer vision-enabled crop disease diagnosis feature powered by Amazon Bedrock with Claude 3.5 Sonnet
+- **Dr_Crop**: Computer vision-enabled crop disease diagnosis feature powered by Amazon Bedrock with Claude 4.5 Sonnet
 - **Voice_Interface**: Vernacular voice-first interaction system supporting Bengali and Hindi dialects
 - **Price_Alert_System**: "Set and Forget" proactive SMS-based market price notification system with push alerts
 - **Grievance_System**: Voice-based issue logging and ticket generation system
@@ -26,7 +26,7 @@ Built on a serverless, event-driven architecture using Amazon Bedrock with Claud
 - **Treatment_Prescription**: AI-generated recommendation for addressing identified crop issues
 - **Price_Target**: User-defined threshold for commodity price notifications in the "Set and Forget" alert system
 - **Grievance_Ticket**: Structured record of farmer-reported logistics or operational issues
-- **Multimodal_AI**: Amazon Bedrock with Claude 3.5 Sonnet enabling vision and language understanding
+- **Multimodal_AI**: Amazon Bedrock with Claude 4.5 Sonnet enabling vision and language understanding
 - **Serverless_Architecture**: Event-driven, highly available infrastructure designed for low-connectivity environments
 
 ## Requirements
@@ -37,7 +37,7 @@ Built on a serverless, event-driven architecture using Amazon Bedrock with Claud
 
 #### Acceptance Criteria
 
-1. WHEN a farmer uploads a crop image, THE Dr_Crop SHALL analyze the image using Amazon Bedrock with Claude 3.5 Sonnet's computer vision capabilities to identify potential diseases or issues
+1. WHEN a farmer uploads a crop image, THE Dr_Crop SHALL analyze the image using Amazon Bedrock with Claude 4.5 Sonnet's computer vision capabilities to identify potential diseases or issues
 2. WHEN crop analysis is complete, THE Dr_Crop SHALL provide treatment recommendations in the farmer's preferred local language (Bengali/Hindi)
 3. WHEN image quality is insufficient for analysis, THE Dr_Crop SHALL request a clearer image with specific guidance on lighting, distance, and focus
 4. WHEN no disease is detected, THE Dr_Crop SHALL confirm crop health status and provide preventive care suggestions
@@ -190,7 +190,7 @@ Built on a serverless, event-driven architecture using Amazon Bedrock with Claud
 
 #### Acceptance Criteria
 
-1. THE Multimodal_AI SHALL use Amazon Bedrock with Claude 3.5 Sonnet for unified vision and language understanding
+1. THE Multimodal_AI SHALL use Amazon Bedrock with Claude 4.5 Sonnet for unified vision and language understanding
 2. WHEN processing crop images, THE Multimodal_AI SHALL analyze visual features and generate contextual recommendations in natural language
 3. WHEN generating voice responses, THE Multimodal_AI SHALL maintain conversational context across vision, voice, and text modalities
 4. THE Multimodal_AI SHALL seamlessly transition between modalities (image → voice response, voice query → SMS alert) without losing context
