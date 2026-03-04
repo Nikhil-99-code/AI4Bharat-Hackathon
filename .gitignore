@@ -14,18 +14,22 @@ lib/
 lib64/
 parts/
 sdist/
+test files/
 var/
 wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 
-# Virtual environments
+# Virtual Environment
 venv/
 env/
 ENV/
-.venv/
-.env/
+.venv
+
+# Environment Variables
+.env
+.env.local
 
 # IDE
 .vscode/
@@ -34,32 +38,22 @@ ENV/
 *.swo
 *~
 
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
 
 # AWS
 .aws/
-*.pem
-*.key
-
-# Environment variables
-.env
-.env.local
-.env.production
 
 # Logs
 *.log
 logs/
 
-# Dependencies
-node_modules/
+# OS
+.DS_Store
+Thumbs.db
 
-# Temporary files
-*.tmp
-*.temp
+# Streamlit
+.streamlit/secrets.toml

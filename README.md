@@ -1,278 +1,120 @@
-# Agri-Nexus Serverless Infrastructure
+# Agri-Nexus V1 Platform
 
-This repository contains the AWS CDK infrastructure code for the Agri-Nexus Multimodal AI Operating System. The infrastructure is built using serverless, event-driven architecture patterns to ensure high availability, automatic scaling, and fault tolerance.
+A comprehensive agricultural application platform that empowers farmers with AI-powered crop diagnosis, voice-based assistance, and proactive market price alerts.
 
-## Architecture Overview
+## Features
 
-The Agri-Nexus infrastructure consists of the following components:
+### 🌾 Dr. Crop
+AI-powered crop disease diagnosis using computer vision and AWS Bedrock Claude 3.5 Sonnet. Upload crop images and receive instant disease identification with treatment recommendations.
 
-### Core Infrastructure
+### 🎤 Sahayak (Voice Assistant)
+Voice-based farmer assistance with speech-to-text and text-to-speech capabilities. Ask questions in your local language and receive spoken guidance.
 
-1. **DynamoDB Single-Table Design**
-   - Primary table with composite keys (PK, SK)
-   - Three Global Secondary Indexes (GSI1, GSI2, GSI3)
-   - Point-in-time recovery enabled
-   - DynamoDB Streams for event processing
-   - Pay-per-request billing for variable workloads
+### 📊 Price Alerts
+Configurable price alert system with SMS notifications. Set target prices for your crops and get notified when market prices reach your desired levels.
 
-2. **S3 Storage Buckets**
-   - Image bucket for crop photos
-   - Audio bucket for voice recordings
-   - Lifecycle policies for cost optimization
-   - Versioning enabled for data protection
-   - Server access logging for audit trails
+## Technology Stack
 
-3. **EventBridge Event Bus**
-   - Custom event bus for inter-service communication
-   - Event rules for different service types
-   - Event archiving for replay and debugging
-   - CloudWatch Logs integration
-
-4. **Lambda Layers**
-   - Python layer with common dependencies (boto3, Pillow, numpy)
-   - Node.js layer with AWS SDK and utilities
-   - Compatible with multiple runtime versions
-
-5. **CloudWatch Monitoring**
-   - Comprehensive dashboard for system metrics
-   - Alarms for critical thresholds
-   - SNS topic for alarm notifications
-   - Metrics for DynamoDB, S3, and EventBridge
+- **Frontend**: Python Streamlit
+- **Backend**: AWS Lambda (Python)
+- **AI/ML**: AWS Bedrock (Claude 3.5 Sonnet)
+- **Database**: AWS DynamoDB (single-table design)
+- **Storage**: AWS S3
+- **Notifications**: AWS SNS
+- **Authentication**: AWS Cognito
+- **Infrastructure**: AWS CDK/CloudFormation
 
 ## Prerequisites
 
-- Node.js 18.x or later
-- AWS CLI configured with appropriate credentials
-- AWS CDK CLI installed (`npm install -g aws-cdk`)
-- TypeScript installed
+- Python 3.12+
+- AWS Account with appropriate permissions
+- AWS CLI configured
+- pip (Python package manager)
 
 ## Installation
 
-1. Clone the repository and install dependencies:
-
+1. Clone the repository:
 ```bash
-npm install
+git clone <repository-url>
+cd AI4Bharat-Hackathon-1
 ```
 
-2. Configure AWS credentials:
-
+2. Create a virtual environment:
 ```bash
-aws configure
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Bootstrap CDK (first time only):
-
+3. Install dependencies:
 ```bash
-cdk bootstrap
+pip install -r requirements.txt
 ```
+
+4. Configure environment variables:
+```bash
+cp .env.template .env
+# Edit .env with your AWS credentials and configuration
+```
+
+## Project Structure
+
+```
+.
+├── frontend/           # Streamlit application
+├── backend/            # AWS Lambda functions
+├── shared/             # Shared utilities and clients
+├── tests/              # Unit and integration tests
+├── infrastructure/     # AWS CDK/CloudFormation templates
+├── requirements.txt    # Python dependencies
+└── .env.template       # Environment variable template
+```
+
+## Running Locally
+
+1. Start the Streamlit application:
+```bash
+streamlit run frontend/streamlit_app.py
+```
+
+2. Access the application at `http://localhost:8501`
 
 ## Deployment
 
-### Deploy the infrastructure:
+Deploy the complete infrastructure using the deployment script:
 
 ```bash
-npm run deploy
+python infrastructure/deploy.py
 ```
 
-### View the CloudFormation template:
+## Testing
 
+Run all tests:
 ```bash
-npm run synth
+pytest tests/
 ```
 
-### Check differences before deployment:
-
+Run specific test categories:
 ```bash
-npm run diff
+pytest tests/unit/          # Unit tests
+pytest tests/property/      # Property-based tests
+pytest tests/integration/   # Integration tests
 ```
 
-### Destroy the infrastructure:
+## Multilingual Support
 
-```bash
-npm run destroy
-```
-
-## Infrastructure Components
-
-### DynamoDB Table Schema
-
-The single-table design uses the following key structure:
-
-**Primary Keys:**
-- `PK`: Partition key (Entity type and identifier)
-- `SK`: Sort key (Entity subtype or relationship)
-
-**Global Secondary Indexes:**
-
-1. **GSI1 - Admin Dashboard Queries**
-   - `GSI1PK`: Entity type (e.g., "GRIEVANCE", "DIAGNOSIS")
-   - `GSI1SK`: Status or timestamp
-
-2. **GSI2 - Market Data Queries**
-   - `GSI2PK`: Crop type
-   - `GSI2SK`: Location and timestamp
-
-3. **GSI3 - Alert Processing**
-   - `GSI3PK`: Alert type and status
-   - `GSI3SK`: Target price and timestamp
-
-**Entity Examples:**
-
-```typescript
-// User Profile
-PK: "USER#<farmerId>"
-SK: "PROFILE"
-
-// Crop Diagnosis
-PK: "USER#<farmerId>"
-SK: "DIAGNOSIS#<timestamp>"
-
-// Price Target
-PK: "USER#<farmerId>"
-SK: "PRICE_TARGET#<cropType>"
-
-// Market Data
-PK: "MARKET#<cropType>#<location>"
-SK: "PRICE#<timestamp>"
-
-// Grievance Ticket
-PK: "USER#<farmerId>"
-SK: "GRIEVANCE#<ticketId>"
-```
-
-### S3 Bucket Lifecycle Policies
-
-**Image Bucket:**
-- Transition to Infrequent Access after 90 days
-- Archive to Glacier after 365 days
-- Delete old versions after 90 days
-
-**Audio Bucket:**
-- Transition to Infrequent Access after 30 days
-- Archive to Glacier after 180 days
-- Delete old versions after 30 days
-
-### EventBridge Event Patterns
-
-The event bus routes events based on source and detail type:
-
-**Dr. Crop Service:**
-- Source: `agri-nexus.dr-crop`
-- Detail Types: `Diagnosis Completed`, `Diagnosis Failed`
-
-**Market Agent:**
-- Source: `agri-nexus.market-agent`
-- Detail Types: `Price Update`, `Market Alert`, `Trend Detected`
-
-**Price Alert Service:**
-- Source: `agri-nexus.price-alert`
-- Detail Types: `Target Reached`, `Alert Sent`, `Target Updated`
-
-**Grievance Service:**
-- Source: `agri-nexus.grievance`
-- Detail Types: `Ticket Created`, `Ticket Updated`, `Ticket Resolved`
-
-**Multimodal AI:**
-- Source: `agri-nexus.multimodal`
-- Detail Types: `Context Updated`, `Modality Transition`, `Proactive Alert`
-
-## Stack Outputs
-
-After deployment, the following outputs are available:
-
-- `TableName`: DynamoDB table name
-- `ImageBucketName`: S3 bucket for images
-- `AudioBucketName`: S3 bucket for audio
-- `EventBusName`: EventBridge event bus name
-- `PythonLayerArn`: Lambda layer ARN for Python
-- `NodeLayerArn`: Lambda layer ARN for Node.js
-- `DashboardUrl`: CloudWatch dashboard URL
-
-## Monitoring and Alarms
-
-### CloudWatch Dashboard
-
-The dashboard includes widgets for:
-- DynamoDB read/write capacity
-- DynamoDB throttles
-- S3 storage metrics
-- EventBridge invocations and failures
-
-### Alarms
-
-Two critical alarms are configured:
-
-1. **DynamoDB Throttle Alarm**
-   - Triggers when throttles exceed 10 in 10 minutes
-   - Sends notification to SNS topic
-
-2. **EventBridge Failure Alarm**
-   - Triggers when failed invocations exceed 5 in 10 minutes
-   - Sends notification to SNS topic
-
-## Security
-
-- All S3 buckets have public access blocked
-- Encryption at rest enabled for DynamoDB and S3
-- Server access logging enabled for S3 buckets
-- IAM roles follow least privilege principle
-- Versioning enabled for data protection
-
-## Cost Optimization
-
-- DynamoDB uses pay-per-request billing
-- S3 lifecycle policies transition data to cheaper storage classes
-- Lambda layers reduce deployment package sizes
-- CloudWatch log retention set to 30 days
-
-## Next Steps
-
-After deploying the infrastructure, you can:
-
-1. Deploy Lambda functions for each service (Dr. Crop, Market Agent, etc.)
-2. Configure API Gateway for HTTP endpoints
-3. Set up Cognito for user authentication
-4. Integrate with Amazon Bedrock for AI capabilities
-5. Configure SNS for SMS notifications
-
-## Troubleshooting
-
-### CDK Bootstrap Issues
-
-If you encounter bootstrap errors:
-
-```bash
-cdk bootstrap aws://ACCOUNT-NUMBER/REGION
-```
-
-### Permission Errors
-
-Ensure your AWS credentials have the following permissions:
-- CloudFormation full access
-- DynamoDB full access
-- S3 full access
-- EventBridge full access
-- Lambda full access
-- CloudWatch full access
-- IAM role creation
-
-### Layer Build Issues
-
-If Lambda layers fail to build, ensure Docker is running (CDK uses Docker for bundling).
-
-## Contributing
-
-When adding new infrastructure components:
-
-1. Create a new construct in `lib/constructs/`
-2. Import and instantiate in `lib/agri-nexus-stack.ts`
-3. Add appropriate tags and monitoring
-4. Update this README with documentation
+The application supports:
+- 🇬🇧 English (en)
+- 🇧🇩 Bengali (bn)
+- 🇮🇳 Hindi (hi)
 
 ## License
 
-MIT License - See LICENSE file for details
+MIT License
+
+## Contributing
+
+Contributions are welcome! Please read the contributing guidelines before submitting pull requests.
 
 ## Support
 
-For issues and questions, please open a GitHub issue or contact the Agri-Nexus team.
+For issues and questions, please open an issue on GitHub.
