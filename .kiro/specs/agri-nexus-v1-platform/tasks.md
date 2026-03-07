@@ -360,21 +360,21 @@ The implementation follows a layered approach: infrastructure setup, shared util
 - [ ] 14. Checkpoint - Verify Streamlit application
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 15. API Gateway and Lambda deployment
-  - [~] 15.1 Create API Gateway REST API
+- [x] 15. API Gateway and Lambda deployment
+  - [x] 15.1 Create API Gateway REST API
     - Define API Gateway with endpoints for all Lambda functions
     - Configure CORS for Streamlit frontend
     - Set up request/response transformations
     - _Requirements: 14.1, 23.2_
   
-  - [~] 15.2 Deploy Lambda functions with IAM roles
+  - [x] 15.2 Deploy Lambda functions with IAM roles
     - Package Lambda functions with dependencies
     - Create IAM roles with appropriate permissions (DynamoDB, S3, Bedrock, SNS, CloudWatch)
     - Deploy all Lambda functions with environment variables
     - Configure timeouts: 30s for diagnosis, 15s for voice, 60s for alerts
     - _Requirements: 14.2, 14.3, 14.4, 23.3_
   
-  - [~] 15.3 Configure CloudWatch monitoring
+  - [x] 15.3 Configure CloudWatch monitoring
     - Set up CloudWatch log groups for all Lambda functions
     - Create CloudWatch dashboard with key metrics
     - Configure alarms for error rates and latency
@@ -388,7 +388,7 @@ The implementation follows a layered approach: infrastructure setup, shared util
     - **Property 32: HTTPS Transmission**
     - **Validates: Requirements 22.3**
 
-- [ ] 16. Integration testing and happy path demonstration
+- [x] 16. Integration testing and happy path demonstration
   - [ ]* 16.1 Write integration test for complete Dr. Crop flow
     - Test upload image → validate → diagnose → store → display
     - Verify all components work together end-to-end
@@ -404,7 +404,7 @@ The implementation follows a layered approach: infrastructure setup, shared util
     - Verify all components work together end-to-end
     - _Requirements: 20.3_
   
-  - [~] 16.4 Create happy path demonstration script
+  - [x] 16.4 Create happy path demonstration script
     - Create automated script that demonstrates all three features sequentially
     - Use sample crop image, voice recording, and price alert configuration
     - Verify execution completes within 5 minutes
