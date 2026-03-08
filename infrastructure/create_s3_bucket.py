@@ -15,7 +15,12 @@ def create_s3_bucket():
     Create S3 bucket with CORS configuration for Streamlit frontend access
     """
     
-    s3_client = boto3.client('s3', region_name=os.getenv('AWS_REGION', 'us-east-1'))
+    s3_client = boto3.client(
+        's3',
+        region_name=os.getenv('AWS_REGION', 'us-east-1'),
+        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+    )
     bucket_name = os.getenv('IMAGE_BUCKET', 'agri-nexus-images')
     region = os.getenv('AWS_REGION', 'us-east-1')
     
@@ -56,13 +61,13 @@ def create_s3_bucket():
         lifecycle_configuration = {
             'Rules': [
                 {
-                    'Id': 'DeleteOldImages',
+                    'ID': 'DeleteOldImages',
                     'Status': 'Enabled',
                     'Prefix': 'images/',
                     'Expiration': {'Days': 90}
                 },
                 {
-                    'Id': 'DeleteOldAudio',
+                    'ID': 'DeleteOldAudio',
                     'Status': 'Enabled',
                     'Prefix': 'audio/',
                     'Expiration': {'Days': 30}
@@ -115,8 +120,18 @@ def create_s3_bucket():
 
 def delete_s3_bucket():
     """Delete the S3 bucket and all its contents (useful for testing/cleanup)"""
-    s3_client = boto3.client('s3', region_name=os.getenv('AWS_REGION', 'us-east-1'))
-    s3_resource = boto3.resource('s3', region_name=os.getenv('AWS_REGION', 'us-east-1'))
+    s3_client = boto3.client(
+        's3',
+        region_name=os.getenv('AWS_REGION', 'us-east-1'),
+        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+    )
+    s3_resource = boto3.resource(
+        's3',
+        region_name=os.getenv('AWS_REGION', 'us-east-1'),
+        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+    )
     bucket_name = os.getenv('IMAGE_BUCKET', 'agri-nexus-images')
     
     try:

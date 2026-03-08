@@ -110,7 +110,6 @@ def create_lambda_function(
             MemorySize=memory_size,
             Environment={
                 'Variables': {
-                    'AWS_REGION': os.getenv('AWS_REGION', 'us-east-1'),
                     'TABLE_NAME': os.getenv('TABLE_NAME', 'agri-nexus-data'),
                     'IMAGE_BUCKET': os.getenv('IMAGE_BUCKET', 'agri-nexus-images'),
                     'BEDROCK_MODEL_ID': os.getenv('BEDROCK_MODEL_ID', 'anthropic.claude-3-5-sonnet-20241022-v2:0'),
@@ -134,7 +133,6 @@ def create_lambda_function(
             MemorySize=memory_size,
             Environment={
                 'Variables': {
-                    'AWS_REGION': os.getenv('AWS_REGION', 'us-east-1'),
                     'TABLE_NAME': os.getenv('TABLE_NAME', 'agri-nexus-data'),
                     'IMAGE_BUCKET': os.getenv('IMAGE_BUCKET', 'agri-nexus-images'),
                     'BEDROCK_MODEL_ID': os.getenv('BEDROCK_MODEL_ID', 'anthropic.claude-3-5-sonnet-20241022-v2:0'),

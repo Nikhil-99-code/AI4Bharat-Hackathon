@@ -24,7 +24,13 @@ def create_dynamodb_table():
     - GSI3SK (String): Target price and timestamp
     """
     
-    dynamodb = boto3.client('dynamodb', region_name=os.getenv('AWS_REGION', 'us-east-1'))
+    # Use credentials from .env file
+    dynamodb = boto3.client(
+        'dynamodb',
+        region_name=os.getenv('AWS_REGION', 'us-east-1'),
+        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+    )
     table_name = os.getenv('TABLE_NAME', 'agri-nexus-data')
     
     try:
@@ -117,7 +123,12 @@ def create_dynamodb_table():
 
 def delete_dynamodb_table():
     """Delete the DynamoDB table (useful for testing/cleanup)"""
-    dynamodb = boto3.client('dynamodb', region_name=os.getenv('AWS_REGION', 'us-east-1'))
+    dynamodb = boto3.client(
+        'dynamodb',
+        region_name=os.getenv('AWS_REGION', 'us-east-1'),
+        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+    )
     table_name = os.getenv('TABLE_NAME', 'agri-nexus-data')
     
     try:

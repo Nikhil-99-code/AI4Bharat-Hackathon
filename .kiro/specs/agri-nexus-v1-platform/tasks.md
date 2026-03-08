@@ -220,7 +220,7 @@ The implementation follows a layered approach: infrastructure setup, shared util
     - **Property 26: Language Switching**
     - **Validates: Requirements 19.3**
   
-  - [~] 10.2 Implement authentication with AWS Cognito
+  - [ ] 10.2 Implement authentication with AWS Cognito
     - Add Cognito user pool integration
     - Implement login/logout functionality
     - Enforce authentication before accessing features
@@ -335,7 +335,7 @@ The implementation follows a layered approach: infrastructure setup, shared util
     - **Property 14: Price Alert Persistence**
     - **Validates: Requirements 9.5, 9.6**
   
-  - [~] 13.2 Implement active alerts display and management
+  - [ ] 13.2 Implement active alerts display and management
     - Query and display all active price thresholds for current user
     - Show crop type, target price, location, creation date for each alert
     - Add delete button for each alert
@@ -350,7 +350,7 @@ The implementation follows a layered approach: infrastructure setup, shared util
     - **Property 16: Alert Deletion**
     - **Validates: Requirements 10.4, 10.5**
   
-  - [~] 13.3 Implement market price simulation for testing
+  - [ ] 13.3 Implement market price simulation for testing
     - Add "Simulate Price Change" button for demonstration
     - Generate mock market data with random price variations
     - Call ingest_market_data Lambda with simulation flag
@@ -411,20 +411,20 @@ The implementation follows a layered approach: infrastructure setup, shared util
     - _Requirements: 20.1, 20.2, 20.3, 20.4, 20.5_
 
 - [ ] 17. Performance optimization and final polish
-  - [~] 17.1 Optimize application performance
+  - [ ] 17.1 Optimize application performance
     - Implement caching for static resources
     - Compress images before upload
     - Add loading indicators for all long operations
     - Test initial page load time on 3G connection
     - _Requirements: 21.1, 21.2, 21.3, 21.4_
   
-  - [~] 17.2 Create deployment script
+  - [ ] 17.2 Create deployment script
     - Write single-command deployment script
     - Output all configuration values needed for Streamlit app
     - Verify deployment is repeatable
     - _Requirements: 23.1, 23.5_
   
-  - [~] 17.3 Create README with setup instructions
+  - [ ] 17.3 Create README with setup instructions
     - Document prerequisites, installation steps, configuration, and usage
     - Include troubleshooting guide
     - Add screenshots of all three features
