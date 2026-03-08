@@ -8,6 +8,7 @@ import sys
 import os
 import boto3
 import base64
+import json
 from datetime import datetime
 from PIL import Image
 import io
@@ -75,7 +76,7 @@ with tab1:
     if uploaded_file:
         # Display image
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Image", use_container_width=True)
+        st.image(image, caption="Uploaded Image", use_column_width=True)
         
         if st.button("🔍 Analyze Crop", type="primary"):
             with st.spinner("Analyzing image..."):
@@ -111,9 +112,9 @@ with tab1:
 Provide response in JSON format."""
                         
                         # Call Bedrock
-                        response = bedrock_client.invoke_model(
+                        response = bedrock_client.bedrock_runtime.invoke_model(
                             modelId=config.bedrock_model_id,
-                            body={
+                            body=json.dumps({
                                 "anthropic_version": "bedrock-2023-05-31",
                                 "max_tokens": 2048,
                                 "temperature": 0.2,
@@ -136,10 +137,12 @@ Provide response in JSON format."""
                                         ]
                                     }
                                 ]
-                            }
+                            })
                         )
                         
-                        diagnosis_text = response['content'][0]['text']
+                        # Parse response
+                        response_body = json.loads(response['body'].read())
+                        diagnosis_text = response_body['content'][0]['text']
                         
                         # Save to DynamoDB
                         diagnosis_id = f"DIAG#{user_id}#{datetime.utcnow().isoformat()}"
