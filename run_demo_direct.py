@@ -34,7 +34,7 @@ config = get_config()
 @st.cache_resource
 def get_aws_clients():
     bedrock = get_bedrock_client()
-    dynamodb = DynamoDBRepository(config.table_name)
+    dynamodb = DynamoDBRepository()
     validator = get_image_validator()
     s3 = boto3.client(
         's3',
@@ -143,12 +143,15 @@ Provide response in JSON format."""
                         
                         # Save to DynamoDB
                         diagnosis_id = f"DIAG#{user_id}#{datetime.utcnow().isoformat()}"
-                        db_repo.save_diagnosis(
+                        db_repo.store_diagnosis(
                             user_id=user_id,
-                            diagnosis_id=diagnosis_id,
-                            image_url=f"s3://{config.image_bucket}/{image_key}",
-                            diagnosis=diagnosis_text,
-                            language=language
+                            diagnosis={
+                                'diagnosis_id': diagnosis_id,
+                                'image_url': f"s3://{config.image_bucket}/{image_key}",
+                                'diagnosis_text': diagnosis_text,
+                                'language': language,
+                                'timestamp': datetime.utcnow().isoformat()
+                            }
                         )
                         
                         # Display results
