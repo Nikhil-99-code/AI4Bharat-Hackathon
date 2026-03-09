@@ -1,0 +1,18 @@
+[theme]
+# Theme will automatically adapt to system settings (light/dark)
+# primaryColor is used for interactive elements
+primaryColor = "#2E7D32"
+# backgroundColor adapts to system theme
+# textColor adapts to system theme
+# secondaryBackgroundColor adapts to system theme
+# font family
+font = "sans serif"
+
+[server]
+# Enable CORS for PWA
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+# Gather usage stats
+gatherUsageStats = false

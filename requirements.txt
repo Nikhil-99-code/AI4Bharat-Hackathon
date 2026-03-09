@@ -29,3 +29,17 @@ numpy==1.26.3
 
 # Date/Time
 python-dateutil==2.8.2
+
+# ============================================================================
+# NEW: Enhanced Features Dependencies
+# ============================================================================
+
+# PDF Generation (for diagnosis reports)
+reportlab==4.0.9
+
+# Data Visualization (for price charts - optional)
+plotly==5.18.0
+pandas==2.1.4
+
+# Note: All new dependencies are optional - app will work without them
+# Install with: pip install -r requirements.txt

@@ -58,3 +58,12 @@ Thumbs.db
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Documentation (internal/generated - exclude from git)
+docs/features/
+docs/guides/
+docs/ui-updates/
+docs/testing/
+docs/infrastructure/
+
+# Keep docs/deployment/ and docs/README.md in git for judges/users

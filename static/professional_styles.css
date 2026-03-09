@@ -1,0 +1,571 @@
+/* Agri-Nexus Professional Styles - Theme Agnostic */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Global Styles - More Compact */
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Base font size adjustments */
+html {
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+/* Streamlit specific font size overrides */
+.stMarkdown, .stText {
+    font-size: 0.9rem;
+}
+
+h1 {
+    font-size: 1.6rem !important;
+}
+
+h2 {
+    font-size: 1.3rem !important;
+}
+
+h3 {
+    font-size: 1.1rem !important;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.3rem !important;
+    }
+    
+    h2 {
+        font-size: 1.1rem !important;
+    }
+    
+    h3 {
+        font-size: 1rem !important;
+    }
+}
+
+/* Hide Streamlit branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+
+/* Main container - More compact */
+.main .block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    max-width: 1400px;
+}
+
+/* Responsive container padding */
+@media (max-width: 768px) {
+    .main .block-container {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+/* Theme-aware variables */
+:root {
+    --primary-green: #2E7D32;
+    --primary-green-dark: #1B5E20;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-primary: inherit;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Header Section - Centered and Compact */
+.app-header {
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 12px rgba(46, 125, 50, 0.2);
+    animation: slideDown 0.5s ease-out;
+    text-align: center;
+}
+
+.app-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+}
+
+.app-subtitle {
+    font-size: 0.75rem;
+    color: #E8F5E9;
+    margin: 0.2rem 0 0 0;
+    font-weight: 400;
+}
+
+/* Responsive header */
+@media (max-width: 768px) {
+    .app-header {
+        padding: 0.6rem 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .app-title {
+        font-size: 1rem;
+    }
+    
+    .app-subtitle {
+        font-size: 0.7rem;
+    }
+}
+
+/* Sidebar Styling - Theme Agnostic */
+[data-testid="stSidebar"] {
+    background: transparent;
+}
+
+[data-testid="stSidebar"] .element-container {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Info Cards - Theme Agnostic - More Compact */
+.info-card {
+    background: var(--card-bg);
+    padding: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    margin: 0.6rem 0;
+    border-left: 3px solid var(--primary-green);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px var(--shadow-color);
+}
+
+/* Responsive info cards */
+@media (max-width: 768px) {
+    .info-card {
+        padding: 0.6rem;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Weather Widget - More Compact */
+.weather-widget {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    padding: 1rem;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(79, 172, 254, 0.3);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.weather-temp {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.4rem 0;
+}
+
+.weather-desc {
+    font-size: 0.85rem;
+    opacity: 0.95;
+    margin-bottom: 0.8rem;
+}
+
+.weather-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* Responsive weather widget */
+@media (max-width: 768px) {
+    .weather-widget {
+        padding: 0.8rem;
+    }
+    
+    .weather-temp {
+        font-size: 1.6rem;
+    }
+    
+    .weather-desc {
+        font-size: 0.75rem;
+    }
+    
+    .weather-details {
+        font-size: 0.7rem;
+    }
+}
+
+/* Status Grid - Theme Agnostic - More Compact */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin: 0.8rem 0;
+}
+
+.status-item {
+    background: var(--card-bg);
+    padding: 0.6rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+}
+
+.status-item:hover {
+    transform: scale(1.05);
+}
+
+.status-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.status-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Responsive status grid */
+@media (max-width: 768px) {
+    .status-grid {
+        gap: 0.5rem;
+        margin: 0.6rem 0;
+    }
+    
+    .status-item {
+        padding: 0.5rem;
+    }
+    
+    .status-icon {
+        font-size: 1rem;
+    }
+    
+    .status-label {
+        font-size: 0.65rem;
+    }
+}
+
+/* System Info - More Compact */
+.system-info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 0.8rem;
+    border-radius: 10px;
+    color: white;
+    margin: 0.8rem 0;
+}
+
+.system-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.system-info-item:last-child {
+    border-bottom: none;
+}
+
+.system-info-label {
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+
+.system-info-value {
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* Responsive system info */
+@media (max-width: 768px) {
+    .system-info {
+        padding: 0.6rem;
+        margin: 0.6rem 0;
+    }
+    
+    .system-info-label {
+        font-size: 0.7rem;
+    }
+    
+    .system-info-value {
+        font-size: 0.75rem;
+    }
+}
+
+/* Tab Styling - Theme Agnostic - More Compact */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 6px;
+    background-color: var(--card-bg);
+    padding: 0.4rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 40px;
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background-color: rgba(46, 125, 50, 0.1);
+    transform: translateY(-2px);
+    border-color: var(--primary-green);
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+    color: white !important;
+    box-shadow: 0 3px 10px rgba(46, 125, 50, 0.3);
+    border-color: transparent;
+}
+
+/* Responsive tabs */
+@media (max-width: 768px) {
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 4px;
+        padding: 0.3rem;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        height: 36px;
+        padding: 0 12px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Button Styling - Theme Agnostic - More Compact */
+.stButton > button {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(46, 125, 50, 0.2);
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(46, 125, 50, 0.3);
+}
+
+/* Responsive buttons */
+@media (max-width: 768px) {
+    .stButton > button {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Input Fields - Theme Agnostic - More Compact */
+.stTextInput > div > div > input,
+.stSelectbox > div > div > select,
+.stTextArea > div > div > textarea {
+    border-radius: 8px;
+    border: 2px solid var(--card-border);
+    transition: all 0.3s ease;
+    background-color: var(--card-bg);
+    backdrop-filter: blur(10px);
+    font-size: 0.85rem;
+    padding: 0.5rem;
+}
+
+.stTextInput > div > div > input:focus,
+.stSelectbox > div > div > select:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* Responsive inputs */
+@media (max-width: 768px) {
+    .stTextInput > div > div > input,
+    .stSelectbox > div > div > select,
+    .stTextArea > div > div > textarea {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+}
+
+/* Metric Cards - Theme Agnostic - More Compact */
+[data-testid="stMetricValue"] {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 0.8rem;
+}
+
+/* Responsive metrics */
+@media (max-width: 768px) {
+    [data-testid="stMetricValue"] {
+        font-size: 1.2rem;
+    }
+    
+    [data-testid="stMetricLabel"] {
+        font-size: 0.75rem;
+    }
+}
+
+/* File Uploader - Theme Agnostic - More Compact */
+[data-testid="stFileUploader"] {
+    border: 2px dashed var(--primary-green);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background-color: rgba(46, 125, 50, 0.05);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--primary-green-dark);
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
+/* Responsive file uploader */
+@media (max-width: 768px) {
+    [data-testid="stFileUploader"] {
+        padding: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Success/Error Messages */
+.stSuccess, .stError, .stWarning, .stInfo {
+    border-radius: 10px;
+    animation: slideDown 0.4s ease-out;
+}
+
+/* Expander - Theme Agnostic - More Compact */
+.streamlit-expanderHeader {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.6rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+}
+
+/* Responsive expander */
+@media (max-width: 768px) {
+    .streamlit-expanderHeader {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+}
+
+/* Additional Responsive Utilities */
+@media (max-width: 1200px) {
+    .main .block-container {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main .block-container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    /* Reduce spacing for mobile */
+    .element-container {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Sidebar responsive adjustments */
+@media (max-width: 768px) {
+    [data-testid="stSidebar"] {
+        min-width: 250px;
+    }
+}
+
+/* Column responsive adjustments */
+@media (max-width: 768px) {
+    [data-testid="column"] {
+        min-width: 100% !important;
+        flex: 100% !important;
+    }
+}
+
+/* Image responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Dataframe responsive */
+[data-testid="stDataFrame"] {
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    [data-testid="stDataFrame"] {
+        font-size: 0.75rem;
+    }
+}
+
+/* Chart responsive */
+[data-testid="stPlotlyChart"] {
+    width: 100% !important;
+}
+
+/* Reduce vertical spacing globally */
+.element-container {
+    margin-bottom: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .element-container {
+        margin-bottom: 0.6rem;
+    }
+}

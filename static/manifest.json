@@ -1,0 +1,49 @@
+{
+  "name": "Agri-Nexus V1 Platform",
+  "short_name": "Agri-Nexus",
+  "description": "AI-Powered Agricultural Intelligence for Indian Farmers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2E7D32",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/static/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["agriculture", "productivity", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Dr. Crop",
+      "short_name": "Diagnose",
+      "description": "AI crop disease diagnosis",
+      "url": "/?tab=dr-crop",
+      "icons": []
+    },
+    {
+      "name": "Sahayak",
+      "short_name": "Ask",
+      "description": "Agricultural assistant",
+      "url": "/?tab=sahayak",
+      "icons": []
+    },
+    {
+      "name": "Market Alerts",
+      "short_name": "Alerts",
+      "description": "Price monitoring",
+      "url": "/?tab=alerts",
+      "icons": []
+    }
+  ]
+}
